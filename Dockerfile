@@ -1,21 +1,16 @@
-FROM debian:stable
-
-MAINTAINER Jeremie Huchet <jeremie@dudie.fr>
+FROM debian:latest
+MAINTAINER Jeremie HUCHET
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -qy \
+RUN apt-get update \
  && apt-get upgrade -qy
-RUN apt-get install -qy squid3 redsocks supervisor
 
-ADD squid.conf /etc/squid3/squid.conf
-ADD redsocks.conf /etc/redsocks.conf
-COPY supervisor.conf.d /etc/supervisor/conf.d
+RUN apt-get install -qy squid3
 
-VOLUME /etc/squid3/conf.d
+COPY squid.conf /etc/squid3/squid.conf
 
 EXPOSE 3128
-EXPOSE 3129
-EXPOSE 3130
+VOLUME /etc/squid3/conf.d
 
-CMD [ "supervisord", "-n" ]
+CMD [ "squid3", "-N" ]
