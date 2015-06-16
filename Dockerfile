@@ -6,14 +6,12 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
  && apt-get upgrade -qy
 
-RUN apt-get install -qy cntlm redsocks supervisor
+RUN apt-get install -qy cntlm redsocks
 
 ADD cntlm.conf /etc/cntlm.conf
 RUN chmod 600 /etc/cntlm.conf
 
 ADD redsocks.conf /etc/redsocks.conf
-
-ADD supervisord.conf /etc/supervisord.conf
 
 EXPOSE 3128
 EXPOSE 3129
