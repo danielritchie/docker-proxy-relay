@@ -17,4 +17,6 @@ EXPOSE 3128
 EXPOSE 3129
 
 ADD startup.sh /startup.sh
+RUN chmod +x startup.sh
+
 CMD [ "/startup.sh" ]
