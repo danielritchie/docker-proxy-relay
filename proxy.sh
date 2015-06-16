@@ -10,7 +10,7 @@ drop)
   docker rm docker-proxy-relay
   ;;
 create)
-  docker run --name docker-proxy-relay -d -p 33128:3128 proxy-oab:latest
+  docker run --name docker-proxy-relay -d -e username=USERNAME -e password=PASSWORD -e proxy=PROXY_HOST:PROXY_PORT -p 33128:3128 proxy-oab:latest
   sudo iptables -t nat -A $FORWARD_TO_PROXY
   ;;
 start)

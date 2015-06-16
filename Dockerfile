@@ -13,7 +13,10 @@ RUN chmod 600 /etc/cntlm.conf
 
 ADD redsocks.conf /etc/redsocks.conf
 
-EXPOSE 3131
-EXPOSE 3132
+EXPOSE 3128
+EXPOSE 3129
 
-CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisord.conf" ]
+ADD startup.sh /startup.sh
+RUN chmod +x startup.sh
+
+CMD [ "/startup.sh" ]
