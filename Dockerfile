@@ -15,7 +15,8 @@ ADD redsocks.conf /etc/redsocks.conf
 
 ADD supervisord.conf /etc/supervisord.conf
 
-EXPOSE 3131
-EXPOSE 3132
+EXPOSE 3128
+EXPOSE 3129
 
-CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisord.conf" ]
+ADD startup.sh /startup.sh
+CMD [ "/startup.sh" ]
