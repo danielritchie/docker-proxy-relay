@@ -6,11 +6,14 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
  && apt-get upgrade -qy
 
-RUN apt-get install -qy squid3
+RUN apt-get install -qy cntlm redsocks
 
-COPY squid.conf /etc/squid3/squid.conf
+ADD cntlm.conf /etc/cntlm.conf
+RUN chmod 600 /etc/cntlm.conf
 
-EXPOSE 3128
-VOLUME /etc/squid3/conf.d
+ADD redsocks.conf /etc/redsocks.conf
 
-CMD [ "squid3", "-N" ]
+EXPOSE 3131
+EXPOSE 3132
+
+CMD [ "/usr/bin/supervisord", "-c", "/etc/supervisord.conf" ]

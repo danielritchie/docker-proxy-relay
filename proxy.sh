@@ -1,29 +1,29 @@
 #!/bin/bash
 
-FORWARD_TO_PROXY="PREROUTING -i docker0 -p tcp --dport 80 -j REDIRECT --to 3128"
+FORWARD_TO_PROXY="PREROUTING -i docker0 -p tcp --dport 80 -j REDIRECT --to 33128 -m comment --comment 'DOCKER_PROXY'"
 
 set -e
 
 case "$1" in
 drop)
   $0 stop
-  docker rm proxy-spike
+  docker rm docker-proxy-relay
   ;;
 create)
-  docker run --name proxy-spike -d -p 3128:3128 -v $(cd $(dirname $0) ; pwd)/conf.d:/etc/squid3/conf.d transparent-auth-proxy
+  docker run --name docker-proxy-relay -d -p 33128:3128 proxy-oab:latest
   sudo iptables -t nat -A $FORWARD_TO_PROXY
   ;;
 start)
-  docker start proxy-spike
+  docker start docker-proxy-relay
   sudo iptables -t nat -A $FORWARD_TO_PROXY
   ;;
 stop)
   sudo iptables -t nat -D $FORWARD_TO_PROXY
-  docker stop proxy-spike || docker kill proxy-spike
+  docker stop docker-proxy-relay || docker kill docker-proxy-relay
   ;;
 ps)
   docker ps | head -1
-  docker ps | grep proxy-spike
+  docker ps | grep docker-proxy-relay
   ;;
 *)
   echo "Usage: $0 [create|start|stop]"
