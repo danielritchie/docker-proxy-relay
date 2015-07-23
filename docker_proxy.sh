@@ -2,21 +2,27 @@
 
 set -e
 
-USER=$2
-PROXY=$3
+# defaults
+proxy_host=localhost
+proxy_port=3128
+proxy_user=
 
+# load from configuration
+test -f config && . config
 
 FORWARD_TO_PROXY="PREROUTING -i docker0 -p tcp --dport 80 -j REDIRECT --to 33128 -m comment --comment 'DOCKER PROXY'"
 
 case "$1" in
 start)
-  echo -n "$USER@$PROXY password: "
-  read -rs PASS
-  echo
+  read -p "Proxy host: ($proxy_host) " input && proxy_host="${input:-$proxy_host}"
+  read -p "Proxy port: ($proxy_port) " input && proxy_port="${input:-$proxy_port}"
+  read -p "$proxy_host:$proxy_port username: ($proxy_user) " input && proxy_user="${input:-$proxy_user}"
+  read -s -p "$proxy_user@$proxy_host:$proxy_port password: " proxy_pass && echo
+
   docker run --name docker-proxy -d -p 33128:3128 \
-      -e username=$USER \
-      -e password=$PASS \
-      -e proxy=$PROXY \
+      -e username=$proxy_user \
+      -e password=$proxy_pass \
+      -e proxy=$proxy_host:$proxy_port \
       docker-proxy-relay:v2
   sudo iptables -t nat -A $FORWARD_TO_PROXY
   sudo iptables -t nat -L -n
@@ -34,7 +40,7 @@ status)
   ;;
 *)
   cat <<EOF
-Usage: $0 start <username> <proxy_host:proxy_port>"
+Usage: $0 start
        $0 stop
        $0 status
 EOF
