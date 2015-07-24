@@ -10,7 +10,7 @@ proxy_user=
 # load from configuration
 test -f config && . config
 
-FORWARD_TO_PROXY="PREROUTING -i docker0 -p tcp --dport 80 -j REDIRECT --to 33128 -m comment --comment 'DOCKER PROXY'"
+FORWARD_TO_PROXY="PREROUTING -i docker0 -p tcp --dport 80 -j REDIRECT --to 33128 -m comment --comment 'DOCKER_PROXY'"
 
 case "$1" in
 start)
@@ -23,7 +23,7 @@ start)
       -e username=$proxy_user \
       -e password=$proxy_pass \
       -e proxy=$proxy_host:$proxy_port \
-      docker-proxy-relay:v2
+      kops/docker-proxy-relay:2.0
   sudo iptables -t nat -A $FORWARD_TO_PROXY
   sudo iptables -t nat -L -n
   ;;
