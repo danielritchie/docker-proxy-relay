@@ -3,6 +3,8 @@ docker-proxy-relay
 
 A docker container to forward traffic to an HTTP proxy relay.
 
+It uses [redsocks](https://github.com/darkk/redsocks) to forward requests to a proxy. [go-any-proxy](https://github.com/ryanchapman/go-any-proxy) may be an alternative.
+
 ## Why?
 
 To use docker behind http proxy at work.
