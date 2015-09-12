@@ -53,7 +53,7 @@ start)
   read -p "Proxy host: ($proxy_host) " input && proxy_host="${input:-$proxy_host}"
   read -p "Proxy port: ($proxy_port) " input && proxy_port="${input:-$proxy_port}"
   read -p "Proxy domain: ($proxy_domain) " input && proxy_domain="${input:-$proxy_domain}"
-  if [[ ]] ; then
+  if [[ "z$proxy_domain" != "z" ]] ; then
 	domain_entry="$proxy_domain\\"
   else
     domain_entry=""

@@ -39,7 +39,7 @@ This was made possible by Jeremie's allowance of derivative works from [kops/doc
 
 		4. Make the wrapper script executable
 
-			chmod +x docker_proxy.sh
+			chmod +x etc/docker_proxy.sh
 		
 		5. Set your default configuration information (optional)
 			

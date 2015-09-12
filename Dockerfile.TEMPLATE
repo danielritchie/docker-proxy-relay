@@ -1,8 +1,8 @@
 FROM debian:8.2
 MAINTAINER Daniel Ritchie
 
-ENV http_proxy ""
-ENV https_proxy ""
+ENV http_proxy 
+ENV https_proxy 
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
