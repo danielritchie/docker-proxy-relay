@@ -1,33 +1,71 @@
 docker-proxy-relay
 ==================
 
-A docker container to forward traffic to an HTTP proxy relay.
+A docker container to act as a transparent relay for forwarding traffic to an HTTP proxy.
 
-It uses [redsocks](https://github.com/darkk/redsocks) to forward requests to a proxy. [go-any-proxy](https://github.com/ryanchapman/go-any-proxy) may be an alternative.
+It uses [redsocks](https://github.com/darkk/redsocks) to forward requests to a proxy. NOTE: [go-any-proxy](https://github.com/ryanchapman/go-any-proxy) may be an alternative.
+
+Thank you to [Jeremie Huchet] (http://jeremie.huchet.nom.fr/)
+This was made possible by Jeremie's allowance of derivative works from [kops/docker-proxy-relay] (https://github.com/kops/docker-proxy-relay)
 
 ## Why?
 
-To use docker behind http proxy at work.
-
-1. start a docker container with cntlm and redsocks
-2. set up an iptable rule to redirect everything incoming from network interface _docker0_ to the _proxy-relay-container_
+		To simplify access to a proxy (ie, behind a corporate proxy while at work).  We have configured this for two primary use cases:
+		1. Formatting variables for http_proxy can be challenging with special characters in the proxy information
+			* Docker container with cntlm and redsocks, accessible without authentication via Docker host IP and configurable port
+		2. Dockerfiles are not portable when proxy information needs to change depending upon location
+			* iptable rule to redirect everything incoming from network interface _docker0_ to the _proxy-relay-container_
 
 ## How to use it?
 
-Obtain the startup script
+		Prerequisites:
+		
+			A host with access to GitHub that has Docker installed
 
-    wget https://github.com/kops/docker-proxy-relay/raw/master/docker_proxy.sh
-    chmod +x docker_proxy.sh
+	    1. Acquire the latest source by cloning (or equivalent):
+		
+			https://github.com/danielritchie/docker-proxy-relay
 
-Start the proxy relay and redirect all docker containers outgoing traffic on port 80 to the _proxy-relay-container_
+		2. Setup Dockerfile from Dockerfile.TEMPLATE
+						
+			Copy or rename "Dockerfile.TEMPLATE" to "Dockerfile"
+						
+			Set environment values for http_proxy and https_proxy
+			NOTE: It is presumed that you are already behind a proxy and are using this container as a result.  If not, these values can be left blank.
+			
+		3. Build the Docker image
+		
+			docker build -t docker-proxy-relay .
 
-    ./docker_proxy.sh start <username> <proxy_host>:<proxy_port>
-    <username> <proxy_host>:<proxy_port> password: xxxxxx
+		4. Make the wrapper script executable
 
-Stop the proxy relay:
+			chmod +x docker_proxy.sh
+		
+		5. Set your default configuration information (optional)
+			
+			Copy or rename "conf/config.example" to "conf/config"
 
-    ./docker_proxy.sh stop
+			Modify configuration information to match your desired default values
+			NOTE: While it is possible to set your password here, it is not recommended to store it in plain text!
+			
+		6. Start/Stop the container as desired
+		
+		
+			START the proxy relay and redirect all docker containers outgoing traffic on port 80 to the _proxy-relay-container_
 
-Get status:
+				etc/docker_proxy.sh start 
+				
+				Follow prompts and enter password
 
-    ./docker_proxy.sh status
+			STOP the proxy relay:
+
+				etc/docker_proxy.sh stop
+
+			Get STATUS:
+
+				etc/docker_proxy.sh status
+				
+
+	
+cntlm reference:
+    http://cntlm.sourceforge.net/
