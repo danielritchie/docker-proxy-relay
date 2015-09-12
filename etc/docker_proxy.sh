@@ -15,18 +15,18 @@ USAGE="Usage: $0 [action]
 
 Actions that can be passed for $0:
     start   Start the container
-	stop    Stop the container
-	status  Return status for the container
-
+    stop    Stop the container
+    status  Return status for the container
+    help    Print this ;-)
+	
 Options:
     -m MODE     Mode of operation, options as follows:
                     full    - (default) Redirect local Docker traffic and expose for external/remote access
 					FUTURE ENHANCEMENTS:
 					docker	- Redirect local Docker traffic, but do not expose for external/remote access
 					proxy   - Do not redirect Docker traffic, expose for external/remote access
-	-c CFG_FILE Configuration file [default: ${CFG_FILE}]
-	-p LCL_PORT Local port where this proxy can be accessed [default: ${LCL_PORT}] 
-	-h          This ;-)
+    -c CFG_FILE Configuration file [default: ${CFG_FILE}]
+    -p LCL_PORT Local port where this proxy can be accessed [default: ${LCL_PORT}] 
 
 This script is a wrapper to start a Docker container that will act as a proxy, and optionally redirect all docker traffic through it.  See documentation for additional/latest information:
 https://github.com/danielritchie/docker-proxy-relay/blob/master/README.md	
@@ -42,6 +42,11 @@ do
         *) exit 1;;
     esac
 done
+
+if [[ "$MODE" == "help" ]] ; then
+   echo "$USAGE"
+   exit 1
+fi
 
 # default override from configuration
 test -f $CFG_FILE && . $CFG_FILE
