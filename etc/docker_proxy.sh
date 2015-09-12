@@ -97,7 +97,7 @@ stop)
 status)
   docker ps | head -1
   docker ps | grep docker-proxy
-  sudo iptables -t nat -L -n | grep "DOCKER PROXY"
+  sudo iptables -t nat -L -n | grep "DOCKER_PROXY"
   ;;
 *)
   echo "$USAGE"
