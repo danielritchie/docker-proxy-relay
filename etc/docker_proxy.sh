@@ -77,7 +77,7 @@ start)
   docker run --name docker-proxy -d -p ${LCL_PORT}:${proxy_port} \
       -e username=$proxy_user \
       -e password=$proxy_pass \
-      -e domain=$proxy_domain
+      -e domain=$proxy_domain \ 
       -e proxy=$proxy_host:$proxy_port \
       docker-proxy-relay
 	  #kops/docker-proxy-relay:2.0
