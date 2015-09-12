@@ -2,12 +2,14 @@
 
 set -e
 
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # defaults
 proxy_host=localhost
 proxy_port=3128
 proxy_user=
 proxy_domain=
-CFG_FILE="../conf/config"
+CFG_FILE="${SCRIPT_DIR}/../conf/config"
 LCL_PORT=33128
 
 USAGE="Usage: $0 [action]
@@ -28,7 +30,7 @@ Options:
     -c CFG_FILE Configuration file [default: ${CFG_FILE}]
     -p LCL_PORT Local port where this proxy can be accessed [default: ${LCL_PORT}] 
 
-This script is a wrapper to start a Docker container that will act as a proxy, and optionally redirect all docker traffic through it.  See documentation for additional/latest information:
+This script is a wrapper to start a Docker container that will act as a proxy, and will also redirect all local docker traffic through it.  See documentation for additional/latest information:
 https://github.com/danielritchie/docker-proxy-relay/blob/master/README.md	
 "
 
@@ -49,7 +51,13 @@ if [[ "$MODE" == "help" ]] ; then
 fi
 
 # default override from configuration
-test -f $CFG_FILE && . $CFG_FILE
+if [[ -f $CFG_FILE ]] then
+  . $CFG_FILE
+else
+  echo "WARNING: A configuration file cannot be found!"
+  echo "Default values WILL NOT BE SOURCED from: ${CFG_FILE}"
+fi
+#test -f $CFG_FILE && . $CFG_FILE
 
 FORWARD_TO_PROXY="PREROUTING -i docker0 -p tcp --dport 80 -j REDIRECT --to ${LCL_PORT} -m comment --comment 'DOCKER_PROXY'"
 
