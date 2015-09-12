@@ -51,7 +51,7 @@ if [[ "$MODE" == "help" ]] ; then
 fi
 
 # default override from configuration
-if [[ -f $CFG_FILE ]] then
+if [[ -f $CFG_FILE ]]; then
   . $CFG_FILE
 else
   echo "WARNING: A configuration file cannot be found!"
