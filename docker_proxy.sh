@@ -6,6 +6,7 @@ set -e
 proxy_host=localhost
 proxy_port=3128
 proxy_user=
+proxy_domain=
 
 # load from configuration
 test -f config && . config
@@ -16,6 +17,7 @@ case "$1" in
 start)
   read -p "Proxy host: ($proxy_host) " input && proxy_host="${input:-$proxy_host}"
   read -p "Proxy port: ($proxy_port) " input && proxy_port="${input:-$proxy_port}"
+  read -p "Proxy domain: ($proxy_domain) " input && proxy_domain="${input:-$proxy_domain}"
   read -p "$proxy_host:$proxy_port username: ($proxy_user) " input && proxy_user="${input:-$proxy_user}"
   read -s -p "$proxy_user@$proxy_host:$proxy_port password: " proxy_pass && echo
 
