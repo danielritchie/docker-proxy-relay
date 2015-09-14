@@ -18,37 +18,37 @@ This was made possible by Jeremie's allowance of derivative works from [kops/doc
 
 ## How to use it?
 
-		Prerequisites:
+		#Prerequisites:
 		
 			A host with access to GitHub that has Docker installed
 
-	    1. Acquire the latest source by cloning (or equivalent):
+	    #Acquire the latest source by cloning (or equivalent):
 		
 			https://github.com/danielritchie/docker-proxy-relay
 
-		2. Setup Dockerfile from Dockerfile.TEMPLATE
+		#Setup Dockerfile from Dockerfile.TEMPLATE
 						
 			Copy or rename "Dockerfile.TEMPLATE" to "Dockerfile"
 						
 			Set environment values for http_proxy and https_proxy
 			NOTE: It is presumed that you are already behind a proxy and are using this container as a result.  If not, these values can be left blank.
 			
-		3. Build the Docker image
+		#Build the Docker image
 		
 			docker build -t docker-proxy-relay .
 
-		4. Make the wrapper script executable
+		#Make the wrapper script executable
 
 			chmod +x etc/docker_proxy.sh
 		
-		5. Set your default configuration information (optional)
+		#Set your default configuration information (optional)
 			
 			Copy or rename "conf/config.example" to "conf/config"
 
 			Modify configuration information to match your desired default values
 			NOTE: While it is possible to set your password here, it is not recommended to store it in plain text!
 			
-		6. Start/Stop the container as desired
+		#Start/Stop the container as desired
 		
 		
 			START the proxy relay and redirect all docker containers outgoing traffic on port 80 to the _proxy-relay-container_

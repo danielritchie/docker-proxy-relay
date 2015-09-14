@@ -4,6 +4,13 @@ set -e
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
+WHOAMI=`whoami`
+if [[ "$WHOAMI" != "root" ]]; then
+	SUDOSTR="sudo"
+else
+	SUDOSTR=""
+fi
+
 # defaults
 proxy_host=localhost
 proxy_port=3128
@@ -24,9 +31,9 @@ Actions that can be passed for $0:
 Options:
     -m MODE     Mode of operation, options as follows:
                     full    - (default) Redirect local Docker traffic and expose for external/remote access
-					FUTURE ENHANCEMENTS:
-					docker	- Redirect local Docker traffic, but do not expose for external/remote access
-					proxy   - Do not redirect Docker traffic, expose for external/remote access
+                    POTENTIAL FUTURE ENHANCEMENTS:
+                    docker	- Redirect local Docker traffic, but do not expose for external/remote access
+                    proxy   - Do not redirect Docker traffic, only make available for external/remote access
     -c CFG_FILE Configuration file [default: ${CFG_FILE}]
     -p LCL_PORT Local port where this proxy can be accessed [default: ${LCL_PORT}] 
 
@@ -80,24 +87,23 @@ start)
       -e domain=$proxy_domain \ 
       -e proxy=$proxy_host:$proxy_port \
       docker-proxy-relay
-	  #kops/docker-proxy-relay:2.0
 
   if [[ "$MODE" != "proxy" ]] ; then
-	  sudo iptables -t nat -A $FORWARD_TO_PROXY
-	  sudo iptables -t nat -L -n
+	  $SUDOSTR iptables -t nat -A $FORWARD_TO_PROXY
+	  $SUDOSTR iptables -t nat -L -n
   fi 
   ;;
 stop)
   docker stop docker-proxy || docker kill docker-proxy
   docker rm docker-proxy
   #Will error if no entries found, but that's OK...could modify to update MODE in status and respond appropriately here 
-  sudo iptables -t nat -D $FORWARD_TO_PROXY
-  sudo iptables -t nat -L -n
+  $SUDOSTR iptables -t nat -D $FORWARD_TO_PROXY
+  $SUDOSTR iptables -t nat -L -n
   ;;
 status)
   docker ps | head -1
   docker ps | grep docker-proxy
-  sudo iptables -t nat -L -n | grep "DOCKER_PROXY"
+  $SUDOSTR iptables -t nat -L -n | grep "DOCKER_PROXY"
   ;;
 *)
   echo "$USAGE"
