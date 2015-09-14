@@ -19,11 +19,7 @@ start)
   read -p "$proxy_host:$proxy_port username: ($proxy_user) " input && proxy_user="${input:-$proxy_user}"
   read -s -p "$proxy_user@$proxy_host:$proxy_port password: " proxy_pass && echo
 
-  docker run --name docker-proxy -d -p 33128:3128 \
-      -e username=$proxy_user \
-      -e password=$proxy_pass \
-      -e proxy=$proxy_host:$proxy_port \
-      kops/docker-proxy-relay:2.0
+  docker run --name docker-proxy -d -p 33128:3128 -e username=$proxy_user -e password=$proxy_pass -e proxy=$proxy_host:$proxy_port docker-proxy-relay
   sudo iptables -t nat -A $FORWARD_TO_PROXY
   sudo iptables -t nat -L -n
   ;;
