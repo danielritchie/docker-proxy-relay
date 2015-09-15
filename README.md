@@ -6,7 +6,7 @@ Configured for two primary use cases:
 
 1. **Formatting values for variables like _http_proxy_ can be challenging under certain conditions**
   * eg, npm's special handling of the backslash, needing to escape special characters, etc.
-  * This container provides an unauthenticated proxy using the Docker host's IP and a configurable port
+  * This container provides an unauthenticated proxy using the Docker host's IP and port 33128 (configurable)
 2. **Dockerfiles are not portable when proxy information changes**
   * iptable rule will redirect everything incoming from network interface _docker0_ (outgoing traffic on port 80) to the _docker-proxy-relay container_ so that all containers running on this host will by default use this container's proxy
 
