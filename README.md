@@ -37,10 +37,10 @@ To simplify access to a proxy (ie, behind a corporate proxy while at work).  Con
 * ```chmod +x etc/docker_proxy.sh```
 
 #####6. Set your default configuration information (optional)
-```cp conf/config.example conf/config```
-  * Modify _conf/config_ file so that values match your desired defaults
-  * NOTE: While it is possible to set your password here, it is not recommended!
-  * FYI: The _conf/config_ file is omitted in .gitignore and will not be updated or overwritten on future pulls
+&nbsp;&nbsp;```cp conf/config.example conf/config```
+    * Modify _conf/config_ file so that values match your desired defaults
+    * NOTE: While it is possible to set your password here, it is not recommended!
+    * FYI: The _conf/config_ file is omitted in .gitignore and will not be updated or overwritten on future pulls
 	
 ## How to Use:
 
