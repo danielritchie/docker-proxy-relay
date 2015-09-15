@@ -74,7 +74,7 @@ start)
   read -p "$proxy_host:$proxy_port username: ($proxy_user) " input && proxy_user="${input:-$proxy_user}"
   read -s -p "$proxy_user@$proxy_host:$proxy_port password: " proxy_pass && echo
 
-  docker run --name docker-proxy -d -p ${LCL_PORT}:3128 -e username=$proxy_user -e password=$proxy_pass -e proxy=$proxy_host:$proxy_port ${DCKR_IMG}
+  docker run --name docker-proxy -d -p ${LCL_PORT}:3128 -e username=$proxy_user -e password=$proxy_pass -d domain=$proxy_domain -e proxy=$proxy_host:$proxy_port ${DCKR_IMG}
   sudo iptables -t nat -A $FORWARD_TO_PROXY
   sudo iptables -t nat -L -n
   ;;
