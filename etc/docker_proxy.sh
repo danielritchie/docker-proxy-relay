@@ -9,6 +9,7 @@ proxy_user=
 proxy_domain=
 LCL_PORT=33128
 DCKR_IMG="docker-proxy-relay"
+CFG_FILE="conf/config"
 
 USAGE="Usage: $0 [action]
 	Follow prompts to confirm or override default/configured values, and enter password
@@ -25,7 +26,7 @@ Options:
                     POTENTIAL FUTURE ENHANCEMENTS:
                     docker	- Redirect local Docker traffic, but do not expose for external/remote access
                     proxy   - Do not redirect Docker traffic, only make available for external/remote access
-    -c CFG_FILE Configuration file [default: ${CFG_FILE}]
+    -c CFG_FILE Configuration file for proxy information [default: ${CFG_FILE}]
     -p LCL_PORT Local port where this proxy can be accessed [default: ${LCL_PORT}] 
 	-i DCKR_IMG Name of Docker image to be used (default: ${DCKR_IMG})
 
