@@ -45,7 +45,11 @@ Set your default configuration information (optional)
 	Modify configuration information to match your desired default values
 	NOTE: While it is possible to set your password here, it is not recommended to store it in plain text!
 	
-Start/Stop the container as desired
+Start/Stop the container as desired using `etc/docker_proxy.sh`
+
+`start` | `stop` | `status` | `help`
+---| --- | ---
+Follow prompts and enter password | Stops container and reverts IP table rule | Returns status of container | More options than defined here
 
 START the proxy relay and redirect all docker containers outgoing traffic on port 80 to the _proxy-relay-container_
 
