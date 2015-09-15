@@ -34,12 +34,13 @@ This script is a wrapper to start a Docker container that will act as a proxy, a
 https://github.com/danielritchie/docker-proxy-relay/blob/master/README.md	
 "
 
-while getopts "m:c:p:h" OPTION
+while getopts "m:c:p:i:h" OPTION
 do
     case $OPTION in
         m) MODE="$OPTARG" ;;
 		c) CFG_FILE="$OPTARG" ;;
 		p) LCL_PORT="$OPTARG" ;;
+		i) DCKR_IMG="$OPTARG" ;;
         h) echo "$USAGE"; exit;;
         *) exit 1;;
     esac
@@ -53,6 +54,7 @@ fi
 # default override from configuration
 if [[ -f $CFG_FILE ]]; then
   . $CFG_FILE
+  echo "The following has been sourced: `cat $CFG_FILE`"
 else
   echo "WARNING: A configuration file cannot be found!"
   echo "Default values WILL NOT BE SOURCED from: ${CFG_FILE}"
