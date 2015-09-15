@@ -10,8 +10,8 @@ fi
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-# defaults to be sourced from configuration file
-CFG_FILE="${SCRIPT_DIR}/conf/config"
+# Defaults are to be sourced from configuration file.  This will be the one provided in the readme
+CFG_FILE="${SCRIPT_DIR}/../conf/config"
 
 # default override from configuration
 if [[ -f $CFG_FILE ]]; then
