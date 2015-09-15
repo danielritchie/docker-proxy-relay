@@ -1,23 +1,21 @@
 danielritchie/docker-proxy-relay
 ==================
-**
-A docker container to act as a transparent relay for forwarding traffic to an HTTP proxy.  Will redirect all docker containers outgoing traffic on port 80 to the _docker-proxy-relay_ container, as well as act as a transparent relay for external/remote traffic.
+** A docker container to act as a transparent relay for forwarding traffic to an HTTP proxy.  Will redirect all docker containers outgoing traffic on port 80 to the _docker-proxy-relay_ container, as well as act as a transparent relay for external/remote traffic. **
 
-It uses [redsocks](https://github.com/darkk/redsocks) to forward requests to a proxy. NOTE: [go-any-proxy](https://github.com/ryanchapman/go-any-proxy) may be an alternative.
+** It uses [redsocks](https://github.com/darkk/redsocks) to forward requests to a proxy. NOTE: [go-any-proxy](https://github.com/ryanchapman/go-any-proxy) may be an alternative. ** 
 
-This was made possible by [Jeremie Huchet] (http://jeremie.huchet.nom.fr/)'s allowance of derivative works from [kops/docker-proxy-relay] (https://github.com/kops/docker-proxy-relay).  Je vous remercie.
-**
+** This was made possible by [Jeremie Huchet] (http://jeremie.huchet.nom.fr/)'s allowance of derivative works from [kops/docker-proxy-relay] (https://github.com/kops/docker-proxy-relay).  Je vous remercie. **
 
 ## Why?
 
-To simplify access to a proxy (ie, behind a corporate proxy while at work).  We have configured this for two primary use cases:
+To simplify access to a proxy (ie, behind a corporate proxy while at work).  Configured for two primary use cases:
 
 1. **Formatting variables for http_proxy can be challenging with special characters in the proxy information**
-  * Docker container with cntlm and redsocks can be setup to provide unauthenticated access via Docker host IP and configurable port
+  * Docker container with cntlm and redsocks can be setup to provide unauthenticated access via Docker's host IP and port (configurable)
 2. **Dockerfiles are not portable when proxy information needs to change depending upon location**
-  * iptable rule to redirect everything incoming from network interface _docker0_ to the _docker-proxy-relay container_
+  * iptable rule to redirect everything incoming from network interface _docker0_ to the _docker-proxy-relay container_ so that all containers running on this host will by default use this container's proxy
 
-## Initial setup
+## Initial Setup:
 
 #####1. Prerequisites are a host with:
 * Git with access to GitHub
@@ -30,6 +28,7 @@ To simplify access to a proxy (ie, behind a corporate proxy while at work).  We 
 * ```cp Dockerfile.TEMPLATE Dockerfile```				
 * Modify _Dockerfile_ to set environment values for **http_proxy** and **https_proxy**
 * NOTE: It is presumed that you are already behind a proxy and are using this container as a result.  If not, these values can be left blank.
+* FYI: The _Dockerfile_ is omitted in .gitignore and will not be updated or overwritten on future pulls
 	
 #####4. Build the Docker image
 * ```docker build -t docker-proxy-relay . ```
@@ -39,10 +38,11 @@ To simplify access to a proxy (ie, behind a corporate proxy while at work).  We 
 
 #####6. Set your default configuration information (optional)
 * ```cp conf/config.example conf/config```
-* Modify configuration information to match your desired default values
-* NOTE: While it is possible to set your password here, it is not recommended to store it in plain text!
+* Modify _conf/config_ file so that values match your desired defaults
+* NOTE: While it is possible to set your password here, it is not recommended!
+* FYI: The _conf/config_ file is omitted in .gitignore and will not be updated or overwritten on future pulls
 	
-## Managing the container
+## How to Use:
 
 Command | Detail
 ---------------------------|----------------------------------
