@@ -1,11 +1,13 @@
 danielritchie/docker-proxy-relay
 ==================
-A docker container to act as a transparent relay for forwarding traffic to an HTTP proxy (probably because you are behind a corporate proxy at work).  Will redirect all docker containers outgoing traffic on port 80 to the _docker-proxy-relay_ container, as well as act as a transparent relay for external/remote traffic.  Configured for two primary use cases:
+A docker container to act as a transparent relay for forwarding traffic to an HTTP proxy (probably because you are behind a corporate proxy at work).
+
+#####Configured for two primary use cases:
 
 1. **Formatting variables for http_proxy can be challenging with special characters in the proxy information**
-  * Docker container with cntlm and redsocks can be setup to provide unauthenticated access via Docker's host IP and port (configurable)
+  * This container provides unauthenticated access via Docker's host IP and a configurable port
 2. **Dockerfiles are not portable when proxy information needs to change depending upon location**
-  * iptable rule to redirect everything incoming from network interface _docker0_ to the _docker-proxy-relay container_ so that all containers running on this host will by default use this container's proxy
+  * iptable rule will redirect everything incoming from network interface _docker0_ (outgoing traffic on port 80) to the _docker-proxy-relay container_ so that all containers running on this host will by default use this container's proxy
 
 It uses [redsocks](https://github.com/darkk/redsocks) to forward requests to a proxy. NOTE: [go-any-proxy](https://github.com/ryanchapman/go-any-proxy) may be an alternative.
 
