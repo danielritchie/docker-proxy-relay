@@ -1,5 +1,4 @@
-danielritchie/
-docker-proxy-relay
+###danielritchie/docker-proxy-relay
 ==================
 A docker container to act as a transparent relay for forwarding traffic to an HTTP proxy (probably because you are behind a corporate proxy at work).
 
