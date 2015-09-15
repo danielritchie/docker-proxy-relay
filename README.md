@@ -24,21 +24,21 @@ To simplify access to a proxy (ie, behind a corporate proxy while at work).  We 
 * Docker installed
 
 #####2. Acquire the latest source by cloning (or equivalent):
-```git clone https://github.com/danielritchie/docker-proxy-relay```
+* ```git clone https://github.com/danielritchie/docker-proxy-relay```
 
 #####3. Setup Dockerfile from Dockerfile.TEMPLATE
 * ```cp Dockerfile.TEMPLATE Dockerfile```				
-* Set environment values for http_proxy and https_proxy
+* Modify Dockerfile to set environment values for http_proxy and https_proxy
 * NOTE: It is presumed that you are already behind a proxy and are using this container as a result.  If not, these values can be left blank.
 	
 #####4. Build the Docker image
-```docker build -t docker-proxy-relay . ```
+* ```docker build -t docker-proxy-relay . ```
 #####5. Make the wrapper script executable
-```chmod +x etc/docker_proxy.sh```
+* ```chmod +x etc/docker_proxy.sh```
 #####6. Set your default configuration information (optional)
-```cp conf/config.example conf/config```
-Modify configuration information to match your desired default values
-NOTE: While it is possible to set your password here, it is not recommended to store it in plain text!
+* ```cp conf/config.example conf/config```
+* Modify configuration information to match your desired default values
+* NOTE: While it is possible to set your password here, it is not recommended to store it in plain text!
 	
 ## Managing the container
 
