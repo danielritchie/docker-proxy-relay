@@ -12,9 +12,9 @@ This was made possible by [Jeremie Huchet] (http://jeremie.huchet.nom.fr/)'s all
 
 To simplify access to a proxy (ie, behind a corporate proxy while at work).  We have configured this for two primary use cases:
 
-1. Formatting variables for http_proxy can be challenging with special characters in the proxy information
+1. **Formatting variables for http_proxy can be challenging with special characters in the proxy information**
   * Docker container with cntlm and redsocks, accessible without authentication via Docker host IP and configurable port
-2. Dockerfiles are not portable when proxy information needs to change depending upon location
+2. **Dockerfiles are not portable when proxy information needs to change depending upon location**
   * iptable rule to redirect everything incoming from network interface _docker0_ to the _proxy-relay-container_
 
 ## How to use it?
