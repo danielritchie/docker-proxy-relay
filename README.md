@@ -2,7 +2,7 @@ danielritchie/docker-proxy-relay
 ==================
 A docker container to act as a transparent relay for forwarding traffic to an HTTP proxy (probably because you are behind a corporate proxy at work).
 
-#####Configured for two primary use cases:
+Configured for two primary use cases:
 
 1. **Formatting variables for http_proxy can be challenging with special characters in the proxy information**
   * This container provides unauthenticated access via Docker's host IP and a configurable port
