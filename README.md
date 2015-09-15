@@ -46,9 +46,15 @@ Make the wrapper script executable
 	NOTE: While it is possible to set your password here, it is not recommended to store it in plain text!
 	
 ###Start/Stop the container as desired using
- etc/docker_proxy.sh
+`etc/docker_proxy.sh` Usage:
 
-`start` | `stop` | `status` | `help`
+Command | Detail
+---------------------------|----------------------------------
+`etc/docker_proxy.sh start` | Start container and add iptables rule
+`etc/docker_proxy.sh stop` | Stop container and revert iptables rule
+`etc/docker_proxy.sh status` | Return status of any running containers
+`etc/docker_proxy.sh help` |  Provide more info and additional options
+
 ---| --- | ---
 Follow prompts and enter password | Stops container and reverts IP table rule | Returns status of container | More options than defined here
 
@@ -69,4 +75,5 @@ Get HELP and additional options not described here:
 	etc/docker_proxy.sh help
 
 ####Misc. References:
-cntlm: http://cntlm.sourceforge.net/
+(cntlm) [http://cntlm.sourceforge.net/]
+(Markdown Cheatsheet) [https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet]
