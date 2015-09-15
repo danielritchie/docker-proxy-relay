@@ -13,40 +13,40 @@ This was made possible by [Jeremie Huchet] (http://jeremie.huchet.nom.fr/)'s all
 To simplify access to a proxy (ie, behind a corporate proxy while at work).  We have configured this for two primary use cases:
 
 1. **Formatting variables for http_proxy can be challenging with special characters in the proxy information**
-  * Docker container with cntlm and redsocks, accessible without authentication via Docker host IP and configurable port
+  * Docker container with cntlm and redsocks can be setup to provide unauthenticated access via Docker host IP and configurable port
 2. **Dockerfiles are not portable when proxy information needs to change depending upon location**
-  * iptable rule to redirect everything incoming from network interface _docker0_ to the _proxy-relay-container_
+  * iptable rule to redirect everything incoming from network interface _docker0_ to the _docker-proxy-relay container_
 
-## How to use it?
+## Initial setup
 
-1. #####Prerequisites:
+#####1. Prerequisites:
 *  A host with access to GitHub that has Docker installed
 
-2. #####Acquire the latest source by cloning (or equivalent):
+#####2. Acquire the latest source by cloning (or equivalent):
 ```git clone https://github.com/danielritchie/docker-proxy-relay```
 
 #####3. Setup Dockerfile from Dockerfile.TEMPLATE
-```cp Dockerfile.TEMPLATE Dockerfile
-```				
+```cp Dockerfile.TEMPLATE Dockerfile```				
+
 Set environment values for http_proxy and https_proxy
 NOTE: It is presumed that you are already behind a proxy and are using this container as a result.  If not, these values can be left blank.
 	
-#####Build the Docker image
+#####4. Build the Docker image
 ```
 	docker build -t docker-proxy-relay .
 ```
-#####Make the wrapper script executable
+#####5. Make the wrapper script executable
 ```
 	chmod +x etc/docker_proxy.sh
 ```
-#####Set your default configuration information (optional)
+#####6. Set your default configuration information (optional)
 ```
 	cp conf/config.example conf/config
 ```
 Modify configuration information to match your desired default values
 NOTE: While it is possible to set your password here, it is not recommended to store it in plain text!
 	
-#####Manage the container as desired
+## Managing the container
 
 Command | Detail
 ---------------------------|----------------------------------
@@ -59,3 +59,4 @@ Command | Detail
 ####Misc. References:
 (cntlm) [http://cntlm.sourceforge.net/]
 (Markdown Cheatsheet) [https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet]
+[Jeremie Huchet] (http://jeremie.huchet.nom.fr/)
