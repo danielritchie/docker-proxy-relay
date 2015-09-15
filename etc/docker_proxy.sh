@@ -54,7 +54,7 @@ fi
 # default override from configuration
 if [[ -f $CFG_FILE ]]; then
   . $CFG_FILE
-  echo "The following has been sourced: `cat $CFG_FILE`"
+  #echo "The following has been sourced: `cat $CFG_FILE`"
 else
   echo "WARNING: A configuration file cannot be found!"
   echo "Default values WILL NOT BE SOURCED from: ${CFG_FILE}"
