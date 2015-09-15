@@ -33,8 +33,10 @@ To simplify access to a proxy (ie, behind a corporate proxy while at work).  We 
 	
 #####4. Build the Docker image
 * ```docker build -t docker-proxy-relay . ```
+
 #####5. Make the wrapper script executable
 * ```chmod +x etc/docker_proxy.sh```
+
 #####6. Set your default configuration information (optional)
 * ```cp conf/config.example conf/config```
 * Modify configuration information to match your desired default values
