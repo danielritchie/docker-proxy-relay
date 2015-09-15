@@ -33,7 +33,7 @@ This was made possible by [Jeremie Huchet] (http://jeremie.huchet.nom.fr/)'s all
 #####3. Build the Docker image
 &nbsp;&nbsp;```docker build -t docker-proxy-relay . ```
 
-#####4. Setup your default configuration information (OPTIONAL)
+#####4. Setup your default configuration information
 &nbsp;&nbsp;```cp conf/config.example conf/config```
   * Modify _conf/config_ file so that values match your desired defaults
   * FYI: The _conf/config_ file is omitted in .gitignore and will not be updated or overwritten on future pulls
@@ -46,9 +46,9 @@ Command | Detail
 ---------------------------|----------------------------------
 `etc/docker_proxy.sh start` | Start container and add iptables rule
 `etc/docker_proxy.sh stop` | Stop container and revert iptables rule
-`etc/docker_proxy.sh status` | Return status of any running containers
+`etc/docker_proxy.sh status` | Return status of the proxy relay
 `etc/docker_proxy.sh help` |  Provide more info and additional options
-  * Once the container is running, direct proxy variables (http_proxy, https_proxy, etc.) to _http://<docker.host.ip>:33128_
+  * Once the container is running, direct proxy variables (http_proxy, https_proxy, etc.) to _http://your.docker.host.ip:33128_
   * Enjoy!
 
 #####Misc. References:

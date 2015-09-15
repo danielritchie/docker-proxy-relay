@@ -1,4 +1,8 @@
+#Proxy information - so you don't have to enter default values every time
 proxy_host=localhost
 proxy_port=3128
 proxy_user=username
 proxy_domain=
+#Optional modifications - although defaults will work great for most
+LCL_PORT=33128
+DCKR_IMG="docker-proxy-relay"

@@ -2,14 +2,17 @@
 
 set -e
 
-# defaults
-proxy_host=localhost
-proxy_port=3128
-proxy_user=
-proxy_domain=
-LCL_PORT=33128
-DCKR_IMG="docker-proxy-relay"
+# defaults to be sourced from configuration file
 CFG_FILE="conf/config"
+
+# default override from configuration
+if [[ -f $CFG_FILE ]]; then
+  . $CFG_FILE
+  #echo "The following has been sourced: `cat $CFG_FILE`"
+else
+  echo "ERROR: A configuration file is required!"
+  echo "Configuration file path: ${CFG_FILE}"
+fi
 
 USAGE="Usage: $0 [action]
 	Follow prompts to confirm or override default/configured values, and enter password
@@ -28,7 +31,7 @@ Options:
                     proxy   - Do not redirect Docker traffic, only make available for external/remote access
     -c CFG_FILE Configuration file for proxy information [default: ${CFG_FILE}]
     -p LCL_PORT Local port where this proxy can be accessed [default: ${LCL_PORT}] 
-	-i DCKR_IMG Name of Docker image to be used (default: ${DCKR_IMG})
+    -i DCKR_IMG Name of Docker image to be used (default: ${DCKR_IMG})
 
 This script is a wrapper to start a Docker container that will act as a proxy, and will also redirect all local docker traffic through it.  See documentation for additional/latest information:
 https://github.com/danielritchie/docker-proxy-relay/blob/master/README.md	
@@ -50,19 +53,6 @@ if [[ "$MODE" == "help" ]] ; then
    echo "$USAGE"
    exit 1
 fi
-
-# default override from configuration
-if [[ -f $CFG_FILE ]]; then
-  . $CFG_FILE
-  #echo "The following has been sourced: `cat $CFG_FILE`"
-else
-  echo "WARNING: A configuration file cannot be found!"
-  echo "Default values WILL NOT BE SOURCED from: ${CFG_FILE}"
-fi
-#test -f $CFG_FILE && . $CFG_FILE
-# load from configuration
-#test -f conf/config && . conf/config
-
 
 FORWARD_TO_PROXY="PREROUTING -i docker0 -p tcp --dport 80 -j REDIRECT --to 33128 -m comment --comment 'DOCKER_PROXY'"
 
@@ -87,7 +77,7 @@ stop)
 status)
   docker ps | head -1
   docker ps | grep docker-proxy
-  sudo iptables -t nat -L -n | grep "DOCKER PROXY"
+  sudo iptables -t nat -L -n | grep "DOCKER_PROXY"
   ;;
 *)
   echo "$USAGE"
