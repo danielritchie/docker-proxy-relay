@@ -19,13 +19,13 @@ To simplify access to a proxy (ie, behind a corporate proxy while at work).  We 
 
 ## How to use it?
 
-#####Prerequisites:
-A host with access to GitHub that has Docker installed
+1. #####Prerequisites:
+*  A host with access to GitHub that has Docker installed
 
-#####Acquire the latest source by cloning (or equivalent):
+2. #####Acquire the latest source by cloning (or equivalent):
 ```git clone https://github.com/danielritchie/docker-proxy-relay```
 
-#####Setup Dockerfile from Dockerfile.TEMPLATE
+#####3. Setup Dockerfile from Dockerfile.TEMPLATE
 ```cp Dockerfile.TEMPLATE Dockerfile
 ```				
 Set environment values for http_proxy and https_proxy
