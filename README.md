@@ -52,6 +52,6 @@ Command | Detail
 
 
 ####Misc. References:
-[cntlm] (http://cntlm.sourceforge.net/)
-[Markdown Cheatsheet] (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-[Jeremie Huchet] (http://jeremie.huchet.nom.fr/)
+[cntlm] (http://cntlm.sourceforge.net/)  
+[Markdown Cheatsheet] (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)  
+[Jeremie Huchet] (http://jeremie.huchet.nom.fr/)  
