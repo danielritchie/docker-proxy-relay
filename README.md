@@ -21,15 +21,15 @@ To simplify access to a proxy (ie, behind a corporate proxy while at work).  We 
 
 #####1. Prerequisites are a host with:
 * Access to GitHub
-* DDocker installed
+* Docker installed
 
 #####2. Acquire the latest source by cloning (or equivalent):
 ```git clone https://github.com/danielritchie/docker-proxy-relay```
 
 #####3. Setup Dockerfile from Dockerfile.TEMPLATE
-*```cp Dockerfile.TEMPLATE Dockerfile```				
-*Set environment values for http_proxy and https_proxy
-*NOTE: It is presumed that you are already behind a proxy and are using this container as a result.  If not, these values can be left blank.
+* ```cp Dockerfile.TEMPLATE Dockerfile```				
+* Set environment values for http_proxy and https_proxy
+* NOTE: It is presumed that you are already behind a proxy and are using this container as a result.  If not, these values can be left blank.
 	
 #####4. Build the Docker image
 ```docker build -t docker-proxy-relay . ```
