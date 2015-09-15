@@ -1,12 +1,12 @@
 danielritchie/docker-proxy-relay
 ==================
-
+**
 A docker container to act as a transparent relay for forwarding traffic to an HTTP proxy.  Will redirect all docker containers outgoing traffic on port 80 to the _docker-proxy-relay_ container, as well as act as a transparent relay for external/remote traffic.
 
 It uses [redsocks](https://github.com/darkk/redsocks) to forward requests to a proxy. NOTE: [go-any-proxy](https://github.com/ryanchapman/go-any-proxy) may be an alternative.
 
 This was made possible by [Jeremie Huchet] (http://jeremie.huchet.nom.fr/)'s allowance of derivative works from [kops/docker-proxy-relay] (https://github.com/kops/docker-proxy-relay).  Je vous remercie.
-
+**
 
 ## Why?
 
