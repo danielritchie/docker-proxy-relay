@@ -26,8 +26,7 @@ A host with access to GitHub that has Docker installed
 ```git clone https://github.com/danielritchie/docker-proxy-relay```
 
 #####Setup Dockerfile from Dockerfile.TEMPLATE
-```
-	cp Dockerfile.TEMPLATE Dockerfile
+```cp Dockerfile.TEMPLATE Dockerfile
 ```				
 Set environment values for http_proxy and https_proxy
 NOTE: It is presumed that you are already behind a proxy and are using this container as a result.  If not, these values can be left blank.
