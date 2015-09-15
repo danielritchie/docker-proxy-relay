@@ -2,8 +2,16 @@
 
 set -e
 
+IAMWHO=`whoami`
+if [[ "$IAMWHO" == "root" ]]; then
+	echo "Support does not yet exist to run as root...try another user"
+	exit 1
+fi
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 # defaults to be sourced from configuration file
-CFG_FILE="conf/config"
+CFG_FILE="${SCRIPT_DIR}/conf/config"
 
 # default override from configuration
 if [[ -f $CFG_FILE ]]; then
