@@ -6,7 +6,7 @@ It uses [redsocks](https://github.com/darkk/redsocks) to forward requests to a p
 
 This was made possible by [Jeremie Huchet] (http://jeremie.huchet.nom.fr/)'s allowance of derivative works from [kops/docker-proxy-relay] (https://github.com/kops/docker-proxy-relay).  Je vous remercie.
 
-## Why?
+# Why?
 
 To simplify access to a proxy (ie, behind a corporate proxy while at work).  Configured for two primary use cases:
 
@@ -15,7 +15,7 @@ To simplify access to a proxy (ie, behind a corporate proxy while at work).  Con
 2. **Dockerfiles are not portable when proxy information needs to change depending upon location**
   * iptable rule to redirect everything incoming from network interface _docker0_ to the _docker-proxy-relay container_ so that all containers running on this host will by default use this container's proxy
 
-## Initial Setup:
+# Initial Setup:
 
 #####Prerequisites are a host that has:
 * Git with access to GitHub
@@ -41,7 +41,10 @@ To simplify access to a proxy (ie, behind a corporate proxy while at work).  Con
 #####5. Make the wrapper script executable
 &nbsp;&nbsp;```chmod +x etc/docker_proxy.sh```
 
-## How to Use:
+
+
+
+# How to Use:
 
 Command | Detail
 ---------------------------|----------------------------------
@@ -51,7 +54,10 @@ Command | Detail
 `etc/docker_proxy.sh help` |  Provide more info and additional options
 
 
-####Misc. References:
+
+
+
+#####Misc. References:
 [cntlm] (http://cntlm.sourceforge.net/)  
 [Markdown Cheatsheet] (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)  
 [Jeremie Huchet] (http://jeremie.huchet.nom.fr/)  
