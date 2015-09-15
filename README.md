@@ -30,13 +30,14 @@ This was made possible by [Jeremie Huchet] (http://jeremie.huchet.nom.fr/)'s all
 * NOTE: It is presumed that you are already behind a proxy and are using this container as a result.  If not, these values can be left blank.
 * FYI: The _Dockerfile_ is omitted in .gitignore and will not be updated or overwritten on future pulls
 
-#####3. Setup your default configuration information (optional)
+#####3. Build the Docker image
+&nbsp;&nbsp;```docker build -t docker-proxy-relay . ```
+
+#####4. Setup your default configuration information (OPTIONAL)
 &nbsp;&nbsp;```cp conf/config.example conf/config```
   * Modify _conf/config_ file so that values match your desired defaults
   * FYI: The _conf/config_ file is omitted in .gitignore and will not be updated or overwritten on future pulls
 		
-#####4. Build the Docker image
-&nbsp;&nbsp;```docker build -t docker-proxy-relay . ```
 
 
 # USE:
