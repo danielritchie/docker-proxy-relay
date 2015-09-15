@@ -1,7 +1,7 @@
 danielritchie/docker-proxy-relay
 ==================
 
-A docker container to act as a transparent relay for forwarding traffic to an HTTP proxy.  Will redirect all docker containers outgoing traffic on port 80 to the _proxy-relay-container_, as well as act as a transparent relay for external/remote traffic.
+A docker container to act as a transparent relay for forwarding traffic to an HTTP proxy.  Will redirect all docker containers outgoing traffic on port 80 to the _docker-proxy-relay_ container, as well as act as a transparent relay for external/remote traffic.
 
 It uses [redsocks](https://github.com/darkk/redsocks) to forward requests to a proxy. NOTE: [go-any-proxy](https://github.com/ryanchapman/go-any-proxy) may be an alternative.
 
@@ -20,15 +20,15 @@ To simplify access to a proxy (ie, behind a corporate proxy while at work).  We 
 ## Initial setup
 
 #####1. Prerequisites are a host with:
-* Access to GitHub
-* Docker installed
+* Git with access to GitHub
+* Docker
 
 #####2. Acquire the latest source by cloning (or equivalent):
 * ```git clone https://github.com/danielritchie/docker-proxy-relay```
 
 #####3. Setup Dockerfile from Dockerfile.TEMPLATE
 * ```cp Dockerfile.TEMPLATE Dockerfile```				
-* Modify Dockerfile to set environment values for http_proxy and https_proxy
+* Modify _Dockerfile_ to set environment values for **http_proxy** and **https_proxy**
 * NOTE: It is presumed that you are already behind a proxy and are using this container as a result.  If not, these values can be left blank.
 	
 #####4. Build the Docker image
