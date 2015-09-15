@@ -38,32 +38,35 @@ Make the wrapper script executable
 
 	chmod +x etc/docker_proxy.sh
 
-Set your default configuration information (optional)
+#Set your default configuration information (optional)
 	
 	cp conf/config.example conf/config
 
 	Modify configuration information to match your desired default values
 	NOTE: While it is possible to set your password here, it is not recommended to store it in plain text!
 	
-Start/Stop the container as desired using `etc/docker_proxy.sh`
+###Start/Stop the container as desired using
+ etc/docker_proxy.sh
 
 `start` | `stop` | `status` | `help`
 ---| --- | ---
 Follow prompts and enter password | Stops container and reverts IP table rule | Returns status of container | More options than defined here
 
 START the proxy relay and redirect all docker containers outgoing traffic on port 80 to the _proxy-relay-container_
-
 	etc/docker_proxy.sh start 
-	Follow prompts and enter password
-
-STOP the proxy relay:
+	(follow prompts and enter password)
+	
+STOP the container and revert iptables rules:
 
 	etc/docker_proxy.sh stop
 
-Get STATUS:
+Get STATUS of running container:
 
 	etc/docker_proxy.sh status
 		
+Get HELP and additional options not described here: 
+	
+	etc/docker_proxy.sh help
 
-Misc. References:
-    cntlm: http://cntlm.sourceforge.net/
+####Misc. References:
+cntlm: http://cntlm.sourceforge.net/
