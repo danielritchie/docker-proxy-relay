@@ -38,12 +38,6 @@ To simplify access to a proxy (ie, behind a corporate proxy while at work).  Con
 #####4. Build the Docker image
 &nbsp;&nbsp;```docker build -t docker-proxy-relay . ```
 
-#####5. Make the wrapper script executable
-&nbsp;&nbsp;```chmod +x etc/docker_proxy.sh```
-
-
-
-
 # How to Use:
 
 Command | Detail
@@ -53,10 +47,9 @@ Command | Detail
 `etc/docker_proxy.sh status` | Return status of any running containers
 `etc/docker_proxy.sh help` |  Provide more info and additional options
 
-
-
-
-
+<P>
+<P>
+<P>
 #####Misc. References:
 [cntlm] (http://cntlm.sourceforge.net/)  
 [Markdown Cheatsheet] (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)  
